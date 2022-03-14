@@ -1,12 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Login';
 import {
   BrowserRouter as Router,
-  Switch,
   Routes,
   Route,
-  Link,
   BrowserRouter
 } from "react-router-dom";
 import Dashboard from './Components/Dashboard';
@@ -15,7 +12,6 @@ import EventPage from './Components/EventPage';
 
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>

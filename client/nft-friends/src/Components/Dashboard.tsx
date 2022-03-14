@@ -1,10 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { communityEvents, removeFromMyEvents } from '../Services/ApiClient'
+import { communityEvents } from '../ApiClient'
 import EventList from './EventList.js'
 import { useNavigate } from 'react-router-dom';
-import { addToMyEventsC } from '../Services/ApiClient'
-import { removeFromMyEventsC } from '../Services/ApiClient'
 import './Dashboard.css'
 
 function Dashboard() {

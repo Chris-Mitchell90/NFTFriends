@@ -1,6 +1,5 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import './EventItem.css'
 
