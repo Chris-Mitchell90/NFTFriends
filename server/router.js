@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const express_1 = __importDefault(require("express"));
+const route = express_1.default.Router();
+const controller_login_1 = require("./controller/controller.login");
+const controller_dashboard_1 = require("./controller/controller.dashboard");
+const controller_form_1 = require("./controller/controller.form");
+route.get('/login/:eth_address', controller_login_1.findExistingUser);
+route.post('/login/:eth_address', controller_login_1.postNewUser);
+route.post('/login', controller_login_1.postFakeUser);
+route.patch('/login/:eth_address', controller_login_1.updateNFTCollection);
+route.post('/events', controller_dashboard_1.getCommunityEvents);
+route.patch('/events/add', controller_dashboard_1.addToMyEvents);
+route.patch('/events/remove', controller_dashboard_1.removeFromMyEvents);
+route.post('/form', controller_form_1.postEvent);
+exports.router = route;
