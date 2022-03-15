@@ -1,17 +1,17 @@
 import './App.css';
 import Login from './Components/Login';
+import { Dashboard } from './Components/Dashboard';
+import Form from './Components/Form';
+import { EventPage } from './Components/EventPage';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   BrowserRouter
 } from "react-router-dom";
-import Dashboard from './Components/Dashboard';
-import Form from './Components/Form';
-import EventPage from './Components/EventPage';
 
-
-function App() {
+export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -24,4 +24,3 @@ function App() {
   );
 }
 
-export default App;
