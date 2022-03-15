@@ -25,7 +25,7 @@ export const getNFTSC = async (eth_address: string): Promise<UserType> => {
     .catch(err => console.error(err, "getNFTSC is not working"))
 };
 
-export const communityEvents = async (nft_groups: EventType[]): Promise<string[]> => {
+export const communityEvents = async (nft_groups: string[]): Promise<EventType[]> => {
     return await fetch(`${BASE_URL}/events`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

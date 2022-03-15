@@ -2,31 +2,31 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import './EventItem.css'
+import { EventType } from '../types';
 
+interface Props {
+    eventItem: EventType;
+    addOrRemoveFromEventList: (event: EventType) => Promise<void>;
+    key: string;
+}
 
-function EventItem({ event, addfunc, key }) {
+export const EventItem: React.FC<Props> = ({ eventItem, addOrRemoveFromEventList, key }) => {
     const navigate = useNavigate();
     const location = useLocation();
-
     const eventPageHandler = () => {
-        navigate('../eventPage', { state: event })
+        navigate('../eventPage', { state: eventItem })
     }
 
     return (
         <div className="eventItemClass">
-            <div onClick={() => addfunc(event)} key={key}>
-                <span><b> {event.group}</b> </span>  <br />
-                {event.title}<br />
-                {moment(event.date).format(' MMMM Do[,] YYYY')}<br />
-
+            <div onClick={() => addOrRemoveFromEventList(eventItem)} key={key}>
+                <span><b>{eventItem.group}</b></span><br />
+                {eventItem.title}<br />
+                {moment(eventItem.date).format(' MMMM Do[,] YYYY')}<br />
             </div>
-            <button onClick={eventPageHandler} >See details</button>
+            <button onClick={eventPageHandler}>See details</button>
             <br />
             <br />
-
-
         </div>
     )
 }
-
-export default EventItem

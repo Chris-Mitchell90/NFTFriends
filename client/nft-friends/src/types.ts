@@ -6,13 +6,12 @@ export interface UserType {
 	_id: string;
 	_v: number
 }
-
 export interface EventType {
 	group: string;
 	host?: string;
 	date: Date;
 	description?: string;
-	title?: string;
+	title: string;
 	venue?: string;
 	street?: string;
 	postcode?: string;
@@ -22,7 +21,6 @@ export interface EventType {
 	attendees: string[];
 	_id: string;
 }
-
 export interface NFT {
 	token_address: string;
 	token_id: string;
@@ -37,7 +35,6 @@ export interface NFT {
 	name: string;
 	symbol: string;
 }
-
 export interface NFTs {
 	status?: string | undefined;
 	total?: number | undefined;
@@ -45,7 +42,6 @@ export interface NFTs {
 	page_size?: number | undefined;
 	result?: NFT[] | undefined;
 }
-
 export interface UserAttendingEventUpdate {
 	title: string,
 	_id: string

@@ -4,7 +4,9 @@ import morgan from 'morgan';
 import { router } from './router';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import 'dotenv/config'
 const SQLLiteStore = require('connect-sqlite3')(session);
+const PORT = process.env.PORT || 3001;
 
 const app = Express();
 app.use(
@@ -13,7 +15,7 @@ app.use(
         name: 'sessionId',
         saveUninitialized: false,
         resave: false,
-        secret: 'secret-message',
+        secret: process.env.SESSION_SECRET || "thisisntsecretenough",
         cookie: {
             maxAge: 1000 * 60 * 60 * 24, //1 day
             sameSite: true,
@@ -30,4 +32,4 @@ app.use(Express.json());
 app.use(morgan('short'));
 app.use(router);
 
-app.listen(3000, () => console.log('listening port 3000'))
+app.listen(PORT, () => console.log(`listening port ${PORT}`))
