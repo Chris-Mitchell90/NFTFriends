@@ -50,3 +50,16 @@ export interface UserAttendingEventUpdate {
 	title: string,
 	_id: string
 }
+
+export interface CreatedEvent {
+	group: string;
+	host?: string;
+	date: Date;
+	description?: string;
+	title?: string;
+	venue?: string;
+	street?: string;
+	postcode?: string;
+	city?: string;
+	online?: boolean;
+}
