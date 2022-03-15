@@ -1,22 +1,22 @@
 {
-	"$schema": "https://json.schemastore.org/tsconfig",
-	"display": "Node 14",
-	"include": [
-		"./nft-friends/src/**/*.tsx",
-		"./nft-friends/src/*.tsx",
-		"./nft-friends/src/*.ts"
-	],
-	"compilerOptions": {
-		"lib": [
-			"es2020",
-			"DOM"
-		],
-		"jsx": "react",
-		"module": "commonjs",
-		"target": "es6",
-		"strict": true,
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"forceConsistentCasingInFileNames": true
-	}
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node 14",
+  "include": [
+    "./nft-friends/src/**/*.tsx",
+    "./nft-friends/src/*.tsx",
+    "./nft-friends/src/*.ts"
+  ],
+  "compilerOptions": {
+    "lib": [
+      "es2020",
+      "DOM"
+    ],
+    "jsx": "react",
+    "module": "commonjs",
+    "target": "es6",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
 }

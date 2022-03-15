@@ -1,4 +1,4 @@
-import {UserType, EventType, UserAttendingEventUpdate} from './types';
+import {UserType, EventType, UserAttendingEventUpdate, CreatedEvent} from './types';
 
 const BASE_URL = 'http://localhost:3000';
 
@@ -35,7 +35,7 @@ export const communityEvents = async (nft_groups: string[]): Promise<EventType[]
     .catch(err => console.error(err, "communityEvents is not working"))
 };
 
-export const postEventToServer = async (event: EventType): Promise<EventType> => {
+export const postEventToServer = async (event: CreatedEvent): Promise<CreatedEvent> => {
     return await fetch(`${BASE_URL}/form`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -53,7 +53,7 @@ export const addToMyEvents = async (event: UserAttendingEventUpdate): Promise<Ev
     })
     .then(res => res.json())
     .catch(err => console.error(err, "addToMyEvents is not working"))
-}
+};
 
 export const removeFromMyEvents = async (event: UserAttendingEventUpdate): Promise<EventType> => {
     return await fetch(`${BASE_URL}/event/remove`, {
@@ -63,4 +63,4 @@ export const removeFromMyEvents = async (event: UserAttendingEventUpdate): Promi
     })
     .then(res => res.json())
     .catch(err => console.error(err, "removeFromMyEvents is not working"))
-}
+};
