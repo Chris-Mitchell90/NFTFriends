@@ -11,7 +11,7 @@ export const Dashboard: React.FC = () => {
     const [myEvents, setMyEvents] = React.useState<EventType[]>([]);
     const navigate: NavigateFunction = useNavigate();
     const location: Location = useLocation();
-    const state: string[] = location.state;
+    const state: string[] = location.state as string[]
 
     const updateUsersCommunityEvents = async (): Promise<EventType[]> => {
         try {

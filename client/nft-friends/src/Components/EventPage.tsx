@@ -1,16 +1,14 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import moment from 'moment';
-import './EventPage.css'
+import './EventPage.css';
+import { EventType } from '../types';
 
 
-
-function EventPage() {
+export const EventPage: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const state = location.state;
-    console.log(state, "this iss the state");
+    const state: EventType = location.state as EventType;
 
     return (
         <div className="eventPageLayout">
@@ -28,28 +26,13 @@ function EventPage() {
                     <div>{state.street}</div>
                     {/* <div>{state.postcode}</div>                    <div>{state.street}</div> */}
                     <div>{state.city}</div>
-
-
-
                 </div>
             </div>
             <div className="thirdEventPage">
                 <div><span><b>NFT Group:</b></span>
                     <span>{state.group}</span></div>
                 <button>Attending/Attend</button>
-
             </div>
-
-
-
-
-
-
         </div>
-
-
-
     )
 }
-
-export default EventPage
