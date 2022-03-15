@@ -1,12 +1,13 @@
 import { User} from '../model/models';
 import { UserType, NFTs } from '../types';
 import { Response, Request } from 'express';
+import 'dotenv/config';
 
 // Starts moralis
 
 import Moralis from 'moralis/node';
-const serverUrl: string = "https://eyeteqg5af1y.usemoralis.com:2053/server";
-const appId:string = "UP1pIX52iA03bkolFJVtcRzCP7sxDsX5CY899Skl";
+const serverUrl: string = process.env.MORALIS_SERVER || 'servernotfound';
+const appId:string = process.env.MORALIS_APPID || 'appidnotfound';
 Moralis.start({ serverUrl, appId });
 
 
