@@ -1,15 +1,15 @@
-import './App.css';
-import Login from './Components/Login';
-import { Dashboard } from './Components/Dashboard';
-import Form from './Components/Form';
-import { EventPage } from './Components/EventPage';
 import React from 'react';
+import { Login } from './Components/Login';
+import { Dashboard } from './Components/Dashboard';
+import { EventPage } from './Components/EventPage';
+import { Form } from './Components/Form';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   BrowserRouter
 } from "react-router-dom";
+import './App.css';
 
 export const App: React.FC = () => {
   return (

@@ -1,14 +1,14 @@
 import React from 'react'
 import { useLocation, Location } from 'react-router-dom'
-import './Form.css'
 import { postEventToServer } from '../ApiClient';
 import { CreatedEvent } from '../types';
+import './Form.css'
 
-function Form() {
+export const Form: React.FC = () => {
     const location: Location = useLocation();
-    const state: string[] = location.state;
+    const state: string[] = location.state as string[];
 
-    const submitHandlerForm = (event): void => {
+    const submitHandlerForm = (event: any): void => {
         event.preventDefault();
         const newEvent: CreatedEvent = {
             group: event.target.group.value,
@@ -32,24 +32,24 @@ function Form() {
                 <div className="firstThird">
                     <label>Select Your NFT Community</label><br />
                     <select name="group">
-                        {state.map((stateI) => { return (<option value={stateI} >{stateI}</option>) })}
+                        {state.map( (stateI) => {  <option value={stateI} >{stateI}</option> } )}
                     </select>
                     <br />
                     <label>Host:</label><br />
-                    <input type="text" name="host" placeholder="Insert your name..."></input>
+                    <input type="text" name="host" placeholder="Insert your name..." />
                     <br />
                     <label>Title:</label><br />
-                    <input type="text" name="title" placeholder="Insert a title..."></input>
+                    <input type="text" name="title" placeholder="Insert a title..." />
                     <br />
                     <label>Description: </label>
                     <br />
-                    <textarea name="newDescription" rows={10} cols={30} placeholder="Insert a description..."></textarea>
+                    <textarea name="newDescription" rows={10} cols={30} placeholder="Insert a description..." />
                 </div>
                 <div className="secondThird">
                     <label>In-Person</label>
-                    <input type="radio" id="offline" name="online" value="false" checked ></input>
+                    <input type="radio" id="offline" name="online" value="false" checked />
                     <label>Online</label>
-                    <input type="radio" id="online" name="online" value="true" ></input>
+                    <input type="radio" id="online" name="online" value="true" />
                     <div className="address">
                         <label htmlFor="venue">Venue: </label>
                         <br />
@@ -59,7 +59,8 @@ function Form() {
                         <br />
                         <input type="text" id="street" name="street" />
                         <br />
-                        <label htmlFor="postcode">Postcode: </label><br />
+                        <label htmlFor="postcode">Postcode: </label>
+                        <br />
                         <input type="text" id="postcode" name="postcode" />
                         <br />
                         <label htmlFor="city">City: </label>
@@ -69,10 +70,10 @@ function Form() {
                 </div>
                 <div className="thirdThird">
                     <h5>Date and Time:</h5>
-                    <input type="datetime-local" name="newEventDate"></input>
+                    <input type="datetime-local" name="newEventDate" />
                     <br />
                     <br />
-                    <button className="button" type="submit" >Create Event</button>
+                    <button className="button" type="submit"> Create Event </button>
                 </div>
             </form>
         </div >

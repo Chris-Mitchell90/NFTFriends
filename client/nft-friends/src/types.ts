@@ -59,3 +59,7 @@ export interface CreatedEvent {
 	city?: string;
 	online?: boolean;
 }
+
+export interface NFTObject {
+	nft_groups: string[];
+}
