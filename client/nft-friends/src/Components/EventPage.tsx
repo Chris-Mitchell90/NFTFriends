@@ -6,7 +6,6 @@ import { EventType } from '../types';
 
 
 export const EventPage: React.FC = () => {
-    const navigate = useNavigate();
     const location = useLocation();
     const state: EventType = location.state as EventType;
 
@@ -24,14 +23,13 @@ export const EventPage: React.FC = () => {
                     <div>{moment(state.date).format('hh:mm a   [-] MMMM Do[,] YYYY')}</div>
                     <div>{state.venue}</div>
                     <div>{state.street}</div>
-                    {/* <div>{state.postcode}</div>                    <div>{state.street}</div> */}
                     <div>{state.city}</div>
                 </div>
             </div>
             <div className="thirdEventPage">
                 <div><span><b>NFT Group:</b></span>
                     <span>{state.group}</span></div>
-                <button>Attending/Attend</button>
+                {/* <button>Attending/Attend</button> */}
             </div>
         </div>
     )
