@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, NavigateFunction } from 'react-router-dom';
-import { UserType, NFTObject } from '../types.js';
+import { UserType } from '../types.js';
 import { getNFTSC, FindExistingUser, postUser } from '../ApiClient.js'
 import './Login.css'
 
 export const Login: React.FC = () => {
     const [ethAddress, setEthAddress] = useState<string>('No address found')
-    const [nftCollection, setNftCollection] = useState<string[]>(['No NFTs found'])
+    const [nftCollection, setNftCollection] = useState<string[] | undefined>([` You don't have any NFTs!`])
     const navigate: NavigateFunction = useNavigate();
 
     const asyncCheckIfDB = async (eth: string): Promise<UserType> => {
@@ -18,20 +18,18 @@ export const Login: React.FC = () => {
         }
     }
 
-    const loginHandler =  (): void => {
+    const loginHandler = async ():Promise<void> => {
         try {
-            if (window["ethereum"]) {
-                window["ethereum"].request({ method: 'eth_requestAccounts' })
-                    .then( (result: string[]) => {
-                        setEthAddress(result[0]);
-                        return result[0]
-                    })
-                    .then( (eth: string) => asyncCheckIfDB(eth) )
-                    .then( (user: UserType) => getNFTSC(user.eth_address) )
-                    .then( (NFTObject: NFTObject) => {
-                        setNftCollection(NFTObject.nft_groups);
-                        navigate('./dashboard', { state: NFTObject.nft_groups })
-                    })
+            if (window.ethereum) {
+                let result: string[] = [];
+                result = await window.ethereum.request({ method: 'eth_requestAccounts' })
+                setEthAddress(result[0]);
+                let user: UserType = await asyncCheckIfDB(result[0])
+                console.log(user, 'user')
+                let userWithNfts: UserType = await getNFTSC(user.eth_address)
+                console.log(userWithNfts, 'user2')
+                setNftCollection(userWithNfts.nft_groups);
+                navigate('./dashboard', { state: userWithNfts.nft_groups })
             } else { throw new Error("You must install Metamask.") }
         } catch (e) { console.error(e, "Error occured during login.") }
     };

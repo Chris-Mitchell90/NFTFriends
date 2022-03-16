@@ -59,19 +59,25 @@ const updateNFTCollection = (req, res) => __awaiter(void 0, void 0, void 0, func
     try {
         const nft_groups = [];
         const eth_address = req.params.eth_address;
+        console.log(eth_address, 'eth');
         const filter1 = { address: eth_address };
-        const nfts = yield node_1.default.Web3API.account.getNFTs(filter1);
-        if (nfts.result) {
-            for (let nft of nfts.result) {
-                if (!nft_groups.includes(nft.name)) {
-                    nft_groups.push(nft.name);
-                }
-            }
-        }
+        console.log(filter1, 'filter');
         const filter2 = { eth_address: eth_address.toLowerCase() };
-        const update = { nft_groups };
-        const user = yield models_1.User.findOneAndUpdate(filter2, update, { new: true });
+        const user = yield models_1.User.findOneAndUpdate(filter2, [], { new: true });
         res.send(user);
+        // const nfts: NFTs | null = await Moralis.Web3API.account.getNFTs(filter1);
+        // console.log("nfts", nfts)
+        // if (nfts.result) {
+        //   for (let nft of nfts.result) {
+        //     if (!nft_groups.includes(nft.name)) {
+        //       nft_groups.push(nft.name);
+        //     }
+        //   }
+        // }
+        // const filter2 = { eth_address: eth_address.toLowerCase() };
+        // const update = { nft_groups };
+        // const user: UserType | null = await User.findOneAndUpdate(filter2, update, { new: true });
+        // res.send(user);
         res.status(201);
     }
     catch (err) {

@@ -6,6 +6,7 @@ import 'dotenv/config';
 // Starts moralis
 
 import Moralis from 'moralis/node';
+import { NftId } from '@alch/alchemy-web3';
 const serverUrl: string = process.env.MORALIS_SERVER || 'servernotfound';
 const appId:string = process.env.MORALIS_APPID || 'appidnotfound';
 Moralis.start({ serverUrl, appId });
@@ -55,19 +56,25 @@ export const updateNFTCollection = async (req: Request, res: Response): Promise<
   try {
     const nft_groups: string[] = [];
     const eth_address: string = req.params.eth_address;
+    console.log(eth_address, 'eth')
     const filter1 = { address: eth_address }
-    const nfts: NFTs = await Moralis.Web3API.account.getNFTs(filter1);
-    if (nfts.result) {
-      for (let nft of nfts.result) {
-        if (!nft_groups.includes(nft.name)) {
-          nft_groups.push(nft.name);
-        }
-      }
-    }
+    console.log(filter1, 'filter')
     const filter2 = { eth_address: eth_address.toLowerCase() };
-    const update = { nft_groups };
-    const user: UserType | null = await User.findOneAndUpdate(filter2, update, { new: true });
-    res.send(user);
+    const user: UserType | null = await User.findOneAndUpdate(filter2, [], { new: true });
+    res.send(user)
+    // const nfts: NFTs | null = await Moralis.Web3API.account.getNFTs(filter1);
+    // console.log("nfts", nfts)
+    // if (nfts.result) {
+    //   for (let nft of nfts.result) {
+    //     if (!nft_groups.includes(nft.name)) {
+    //       nft_groups.push(nft.name);
+    //     }
+    //   }
+    // }
+    // const filter2 = { eth_address: eth_address.toLowerCase() };
+    // const update = { nft_groups };
+    // const user: UserType | null = await User.findOneAndUpdate(filter2, update, { new: true });
+    // res.send(user);
     res.status(201);
   }
   catch (err) {

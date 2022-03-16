@@ -5,10 +5,10 @@ import { EventType, UserType } from '../types';
 // Takes an array of the user NFT groups that are passed down through the login and compares with all the NFT groups to find events that they have access to.
 export const getCommunityEvents = async (req: Request, res: Response): Promise<void> => {
   try {
-    const nft_groups: String[] = req.body; 
+    const nft_groups: String[] | null = req.body; 
     const communityEvents: EventType[] = [];
     const events: EventType[] | null = await NFTEvent.find();
-    if (events) {
+    if (events && nft_groups && nft_groups.length > 0) {
       for (let group of nft_groups) {
         for (let event of events) {
           if (event.group === group) {
@@ -16,11 +16,11 @@ export const getCommunityEvents = async (req: Request, res: Response): Promise<v
           }
         }
       }
-      res.status(200);
-      res.send(communityEvents);
     } else {
       throw "No events were found."
     }
+    res.status(200);
+    res.send(communityEvents);
   }
   catch (err) {
     res.status(500);

@@ -17,7 +17,7 @@ const getCommunityEvents = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const nft_groups = req.body;
         const communityEvents = [];
         const events = yield models_1.NFTEvent.find();
-        if (events) {
+        if (events && nft_groups && nft_groups.length > 0) {
             for (let group of nft_groups) {
                 for (let event of events) {
                     if (event.group === group) {
@@ -25,12 +25,13 @@ const getCommunityEvents = (req, res) => __awaiter(void 0, void 0, void 0, funct
                     }
                 }
             }
-            res.status(200);
-            res.send(communityEvents);
         }
         else {
             throw "No events were found.";
         }
+        res.status(200);
+        console.log(communityEvents, 'commEvents');
+        res.send(communityEvents);
     }
     catch (err) {
         res.status(500);
